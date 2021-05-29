@@ -11,7 +11,7 @@ cacheExternal.open()
     .then(() => db.open())
     .then(() => createServer())
     .then((app: Express) => createSocketServer(app))
-    .then((app: Express) => {
+    .then((app: Server) => {
         app.listen(config.PORT || 3000, () => {
             logger.info(`Listening on http://localhost:${config.PORT}`)
         })

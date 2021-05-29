@@ -51,6 +51,7 @@ async function auth(bearerToken: string): Promise<AuthResponse> {
             if (err === null && decoded !== undefined && (decoded as any).userId !== undefined) {
                 const d = decoded as { userId: string, exp: number }
                 const expireAfter = d.exp - Math.round((new Date()).valueOf() / 1000)
+                console.log(d.exp+" "+ Math.round((new Date()).valueOf() / 1000) +" "+ expireAfter);
                 cacheExternal.setProp(token, d.userId, expireAfter)
                     .then(() => {
                         resolve({userId: d.userId})

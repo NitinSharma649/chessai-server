@@ -1,17 +1,22 @@
-import * as socket from "socket.io";
-import http from "http";
+import {Socket, Server as ServerIo} from "socket.io";
+import http, {Server} from "http";
 import {Express} from "express";
 import initializeGame from "../gameLogic/connections";
 
-export async function createSocketServer(app: Express): Promise<Express> {
+export async function createSocketServer(app: Express): Promise<Server> {
 
     const server = http.createServer(app)
-    const io = require("socket.io")(server);
+    const io = new ServerIo(server, {
+        cors: {
+            origin: "http://localhost:3000",
+            methods: ["GET", "POST"]
+        }
+    });
 
-    io.on("connection", function(socket: socket.Socket) {
+    io.on("connection", function(socket: Socket) {
         console.log("a user connected");
         initializeGame(io, socket)
     });
 
-    return app;
+    return server;
 }

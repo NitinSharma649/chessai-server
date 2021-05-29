@@ -2,6 +2,8 @@
  * Here is where we should register event listeners and emitters.
  */
 import {Socket} from "socket.io";
+import logger from "../utils/logger";
+import cacheExternal from "../utils/cache_external";
 
 // gamesInSession stores an array of all active socket connections
 const gamesInSession: any = []
@@ -54,8 +56,6 @@ const videoChatBackend = () =>  {
     })
 }
 
-
-
 const playerJoinsGame = (idData:any) =>  {
     console.log(idData);
     /**
@@ -66,24 +66,23 @@ const playerJoinsGame = (idData:any) =>  {
     var sock = gameSocket
 
     // Look up the room ID in the Socket.IO manager object.
-    var room = io.sockets.adapter.rooms[idData.gameId]
-    // console.log(room)
+    var room = io.sockets.adapter.rooms.get(idData.gameId)
 
     // If the room exists...
     if (room === undefined) {
         gameSocket.emit('status' , "This game session does not exist." );
         return
     }
-    if (room.length < 2) {
+    if (room.size < 2) {
         // attach the socket id to the data object.
         idData.mySocketId = sock.id;
 
         // Join the room
         sock.join(idData.gameId);
 
-        console.log(room.length)
+        console.log(room.size)
 
-        if (room.length === 2) {
+        if (room.size === 2) {
             io.sockets.in(idData.gameId).emit('start game', idData.userName)
         }
 
@@ -96,16 +95,20 @@ const playerJoinsGame = (idData:any) =>  {
     }
 }
 
-
 const createNewGame = (gameId: any) =>  {
-    console.log(gameId)
     // Return the Room ID (gameId) and the socket ID (mySocketId) to the browser client
-    gameSocket.emit('createNewGame', {gameId: gameId, mySocketId: gameSocket.id});
+    console.log("sdf");
+    gameSocket.emit('createNewGame', {
+        gameId: gameId,
+        mySocketId: gameSocket.id
+    });
 
     // Join the Room and wait for the other player
-    gameSocket.join(gameId)
-}
+    gameSocket.join(gameId);
+    console.log(io.sockets.adapter.rooms)
 
+    io.to(gameId).emit('hi');
+}
 
 const newMove = (move: any) =>  {
     /**
@@ -123,7 +126,6 @@ const onDisconnect = () =>  {
     var i = gamesInSession.indexOf(gameSocket);
     gamesInSession.splice(i, 1);
 }
-
 
 const requestUserName = (gameId: any) =>  {
     io.to(gameId).emit('give userName', gameSocket.id);

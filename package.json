@@ -5,20 +5,17 @@
     "author": "Nitin Sharma <nitin.sharma649@gmail.com>",
     "main": "src/app.ts",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "tsc-dev": "tsc --watch",
-        "dev": "tsc --watch && pm2-dev ./dist/server.js",
-        "prod": "tsc && node ./dist/server.js",
         "build": "tsc",
         "start": "cross-env ENV_FILE=./config/.env.prod node -r tsconfig-paths/register ./bin/app.js",
-        "dev-env": "cross-env ENV_FILE=./config/.env.dev ts-node -r tsconfig-paths/register ./src/app.ts",
-        "test:unit": "cross-env ENV_FILE=./config/.env.test jest"
+        "devc": "cross-env ENV_FILE=./config/.env.dev ts-node -r tsconfig-paths/register ./src/app.ts",
+        "test:unit": "cross-env ENV_FILE=./config/.env.test jest",
+        "dev": "cross-env ENV_FILE=./config/.env.dev ts-node-dev -r tsconfig-paths/register ./src/app.ts"
     },
     "keywords": [],
-    "author": "Nitin Sharma",
     "license": "ISC",
     "devDependencies": {
-        "@types/winston": "^2.4.4"
+        "@types/winston": "^2.4.4",
+        "ts-node-dev": "^1.1.6"
     },
     "dependencies": {
         "@types/bcrypt": "^5.0.0",
