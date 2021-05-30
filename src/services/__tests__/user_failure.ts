@@ -1,8 +1,8 @@
 import jwt, {Secret, SignCallback, SignOptions} from 'jsonwebtoken'
 
-import cacheExternal from '@chessAi/utils/cache_external'
-import db from '@chessAi/utils/db'
-import {createDummy, createDummyAndAuthorize} from '@chessAi/tests/user'
+import cacheExternal from '../../utils/cache_external'
+import db from '../../utils/db'
+import {createDummy, createDummyAndAuthorize} from '../../tests/user'
 import user from '../user'
 
 jest.mock('../../../utils/cache_external.ts')

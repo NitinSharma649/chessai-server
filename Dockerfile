@@ -1,23 +1,24 @@
-FROM node:12-alpine
+FROM node:lts
 
 # Create app directory
-WORKDIR /usr/src/app
-
+WORKDIR /opt/chessai-server
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
-COPY package*.json ./
-COPY yarn.lock ./
+COPY package.json ./
 
 RUN npm install --production
-RUN NODE_OPTIONS=--max-old-space-size=8192 yarn build
+RUN NODE_OPTIONS=--max-old-space-size=8192
 # If you are building your code for production
 # RUN npm ci --only=production
 
 # Bundle app source
 COPY . .
 
-EXPOSE 8080
+RUN npm run build
+
+
+EXPOSE 50000
 
 # Default env file
 ENV ENV_FILE=config/.env.prod

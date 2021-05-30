@@ -35,7 +35,8 @@ interface Config {
   morganBodyLogger: boolean
   exmplDevLogger: boolean
   loggerLevel: LogLevel ,
-  PORT: number
+  PORT: number,
+  CLIENT_URL:string
 }
 
 const config: Config = {
@@ -57,7 +58,8 @@ const config: Config = {
   morganBodyLogger: parsedEnv.MORGAN_BODY_LOGGER as boolean,
   exmplDevLogger: parsedEnv.EXMPL_DEV_LOGGER as boolean,
   loggerLevel: parsedEnv.LOGGER_LEVEL as LogLevel,
-  PORT: parsedEnv.PORT as number
+  PORT: parsedEnv.PORT as number,
+  CLIENT_URL: parsedEnv.CLIENT_URL as string
 }
 
 export default config

@@ -1,8 +1,8 @@
 import faker from 'faker'
 
-import cacheExternal from '@chessAi/utils/cache_external'
-import db from '@chessAi/utils/db'
-import {createDummy, createDummyAndAuthorize} from '@chessAi/tests/user'
+import cacheExternal from '../../utils/cache_external'
+import db from '../../utils/db'
+import {createDummy, createDummyAndAuthorize} from '../../tests/user'
 import user from '../user'
 
 
@@ -70,8 +70,9 @@ describe('createUser', () => {
     const email = faker.internet.email()
     const password = faker.internet.password()
     const name = faker.name.firstName()
+    const username = name
 
-    await expect(user.createUser(email, password, name)).resolves.toEqual({
+    await expect(user.createUser(username, email, password, name)).resolves.toEqual({
       userId: expect.stringMatching(/^[a-f0-9]{24}$/)
     })
   })
@@ -80,10 +81,11 @@ describe('createUser', () => {
     const email = faker.internet.email()
     const password = faker.internet.password()
     const name = faker.name.firstName()
+    const username = name
 
-    await user.createUser(email, password, name)
+    await user.createUser(username, email, password, name)
 
-    await expect(user.createUser(email, password, name)).resolves.toEqual({
+    await expect(user.createUser(username, email, password, name)).resolves.toEqual({
       error: {
         type: 'account_already_exists',
         message: `${email} already exists`
@@ -95,7 +97,8 @@ describe('createUser', () => {
     const email = 'invalid@em.c'
     const password = faker.internet.password()
     const name = faker.name.firstName()
+    const username = name
 
-    await expect(user.createUser('em@em.c', password, name)).rejects.toThrowError('validation failed')
+    await expect(user.createUser(username,'em@em.c', password, name)).rejects.toThrowError('validation failed')
   })
 })
