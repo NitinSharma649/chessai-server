@@ -5,6 +5,7 @@ import morganBody from 'morgan-body'
 import config from '../config'
 import {expressDevLogger} from './express_dev_logger'
 import Routes from "../routes";
+import cors from 'cors';
 
 export async function createServer(): Promise<Express> {
 
@@ -28,12 +29,14 @@ export async function createServer(): Promise<Express> {
         app.use(expressDevLogger)
     }
 
-    app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-        res.header("Access-Control-Allow-Origin", "*")
-        res.header("Access-Control-Allow-Headers", "Origin, X-Request-With");
-        res.header("Access-Control-Allow-Method", "GET, POST, OPTIONS, PUT, DELETE, PATCH");
-        next();
-    });
+    app.use(cors());
+
+    // app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+    //     res.header("Access-Control-Allow-Origin", "*")
+    //     res.header("Access-Control-Allow-Headers", "Origin, X-Request-With");
+    //     res.header("Access-Control-Allow-Method", "GET, POST, OPTIONS, PUT, DELETE, PATCH");
+    //     next();
+    // });
 
     // error customization, if request is invalid
     app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {

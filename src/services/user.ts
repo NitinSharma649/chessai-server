@@ -10,7 +10,7 @@ import logger from '../utils/logger'
 export type ErrorResponse = { error: { type: string, message: string } }
 export type AuthResponse = ErrorResponse | { userId: string }
 export type CreateUserResponse = ErrorResponse | { userId: string }
-export type LoginUserResponse = ErrorResponse | { token: string, userId: string, expireAt: Date }
+export type LoginUserResponse = ErrorResponse | { token: string, userId: string, expireAt: Date, username: string }
 
 export type ProfileResponse = ErrorResponse | {
     userId: string;
@@ -112,7 +112,7 @@ async function login(login: string, password: string): Promise<LoginUserResponse
         }
 
         const authToken = await createAuthToken(user._id.toString())
-        return {userId: user._id.toString(), token: authToken.token, expireAt: authToken.expireAt}
+        return {userId: user._id.toString(), token: authToken.token, expireAt: authToken.expireAt, username: user.username}
     } catch (err) {
         logger.error(`login: ${err}`)
         return Promise.reject({error: {type: 'internal_server_error', message: 'Internal Server Error'}})
