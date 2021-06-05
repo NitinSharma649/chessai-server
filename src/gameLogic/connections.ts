@@ -2,8 +2,8 @@
  * Here is where we should register event listeners and emitters.
  */
 import {Socket} from "socket.io";
-import logger from "../utils/logger";
-import cacheExternal from "../utils/cache_external";
+import logger from "@chessAi/utils/logger";
+import cacheExternal from "@chessAi/utils/cache_external";
 
 // gamesInSession stores an array of all active socket connections
 const gamesInSession: any = []

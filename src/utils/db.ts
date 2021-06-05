@@ -3,8 +3,8 @@
 import mongoose from 'mongoose'
 import {MongoMemoryServer} from 'mongodb-memory-server'
 
-import config from '../config'
-import logger from './logger'
+import config from '@chessAi/config'
+import logger from '@chessAi/utils/logger'
 
 mongoose.Promise = global.Promise
 mongoose.set('debug', process.env.DEBUG !== undefined)

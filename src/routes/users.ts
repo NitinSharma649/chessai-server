@@ -1,7 +1,7 @@
 import {Express} from "express";
-import endpoints from "../config/endpoints";
-import {createUser, login, profile} from "../controllers/user";
-import {auth} from "../middleware/auth";
+import endpoints from "@chessAi/config/endpoints";
+import {createUser, login, profile} from "@chessAi/controllers/user";
+import {auth} from "@chessAi/middleware/auth";
 
 const UserRoutes = (app: Express) => {
     app.route(endpoints.user.login).post(login);

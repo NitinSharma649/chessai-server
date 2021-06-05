@@ -1,11 +1,11 @@
-import cacheExternal from './utils/cache_external'
-import db from './utils/db'
-import logger from './utils/logger'
-import {createServer} from './utils/server'
-import {createSocketServer} from "./utils/socketio";
+import cacheExternal from '@chessAi/utils/cache_external'
+import db from '@chessAi/utils/db'
+import logger from '@chessAi/utils/logger'
+import {createServer} from '@chessAi/utils/server'
+import {createSocketServer} from "@chessAi/utils/socketio";
 import {Server} from "http";
 import {Express} from "express";
-import config from './config'
+import config from '@chessAi/config'
 
 cacheExternal.open()
     .then(() => db.open())

@@ -1,7 +1,7 @@
 import * as r from 'redis'
 
-import config from '../config'
-import logger from './logger'
+import config from '@chessAi/config'
+import logger from '@chessAi/utils/logger'
 
 const redis: typeof r = config.redisUrl === 'redis-mock' ? require('redis-mock') : require('redis')
 

@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from "express";
-import UserService from "../services/user";
-import {writeJsonResponse} from "../utils/response";
-import logger from "../utils/logger";
+import UserService from "@chessAi/services/user";
+import {writeJsonResponse} from "@chessAi/utils/response";
+import logger from "@chessAi/utils/logger";
 
 export function auth(req: Request, res: Response, next: NextFunction): void {
     const token = req.headers.authorization!

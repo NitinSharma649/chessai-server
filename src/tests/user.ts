@@ -1,7 +1,7 @@
 import faker from 'faker'
 
-import User from '../models/user'
-import UserService from '../services/user'
+import User from '@chessAi/models/user'
+import UserService from '@chessAi/services/user'
 
 type DummyUser = {email: string, password: string, name: string, userId: string}
 type AuthorizedDummyUser = {email: string, password: string, name: string, userId: string, token: string}

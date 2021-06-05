@@ -1,9 +1,9 @@
 import faker from 'faker'
 
-import cacheExternal from '../../utils/cache_external'
-import db from '../../utils/db'
-import {createDummy, createDummyAndAuthorize} from '../../tests/user'
-import user from '../user'
+import cacheExternal from '@chessAi/utils/cache_external'
+import db from '@chessAi/utils/db'
+import {createDummy, createDummyAndAuthorize} from '@chessAi/tests/user'
+import user from '@chessAi/services/user'
 
 
 beforeAll(async () => {

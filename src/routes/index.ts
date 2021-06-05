@@ -1,6 +1,6 @@
 import {Express, Request, Response} from "express";
-import UserRoutes from "./users";
-import endpoints from "../config/endpoints";
+import UserRoutes from "@chessAi/routes/users";
+import endpoints from "@chessAi/config/endpoints";
 
 const Routes = (app: Express) => {
     app.route(endpoints.test)

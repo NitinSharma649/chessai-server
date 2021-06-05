@@ -2,7 +2,7 @@
 
 import winston from 'winston'
 
-import config from '../config'
+import config from '@chessAi/config'
 
 // npm debug levels (winston default):
 // {

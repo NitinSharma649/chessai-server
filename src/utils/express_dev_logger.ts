@@ -2,7 +2,7 @@
 
 import express from 'express'
 
-import logger from './logger'
+import logger from '@chessAi/utils/logger'
 
 export const expressDevLogger = (req: express.Request, res: express.Response, next: express.NextFunction): void => {
   const startHrTime = process.hrtime()

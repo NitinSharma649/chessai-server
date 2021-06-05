@@ -2,9 +2,9 @@ import bodyParser from 'body-parser'
 import express, {Express, Request, Response} from 'express'
 import morgan from 'morgan'
 import morganBody from 'morgan-body'
-import config from '../config'
-import {expressDevLogger} from './express_dev_logger'
-import Routes from "../routes";
+import config from '@chessAi/config'
+import {expressDevLogger} from '@chessAi/utils/express_dev_logger'
+import Routes from "@chessAi/routes";
 import cors from 'cors';
 
 export async function createServer(): Promise<Express> {

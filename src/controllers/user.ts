@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from "express";
-import UserService, {ErrorResponse} from "../services/user";
-import {writeJsonResponse} from "../utils/response";
-import logger from "../utils/logger";
+import UserService, {ErrorResponse} from "@chessAi/services/user";
+import {writeJsonResponse} from "@chessAi/utils/response";
+import logger from "@chessAi/utils/logger";
 
 export function login(req: Request, res: Response): void {
     const {email, password} = req.body

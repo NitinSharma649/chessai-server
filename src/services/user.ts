@@ -1,11 +1,11 @@
 import fs from 'fs'
 import jwt, {SignOptions, VerifyErrors, VerifyOptions} from 'jsonwebtoken'
 
-import User, {IUser} from '../models/user'
-import config from '../config'
-import cacheExternal from '../utils/cache_external'
-import cacheLocal from '../utils/cache_local'
-import logger from '../utils/logger'
+import User, {IUser} from '@chessAi/models/user'
+import config from '@chessAi/config'
+import cacheExternal from '@chessAi/utils/cache_external'
+import cacheLocal from '@chessAi/utils/cache_local'
+import logger from '@chessAi/utils/logger'
 
 export type ErrorResponse = { error: { type: string, message: string } }
 export type AuthResponse = ErrorResponse | { userId: string }

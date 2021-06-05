@@ -1,6 +1,6 @@
 import NodeCache from 'node-cache'
 
-import config from '../config'
+import config from '@chessAi/config'
 
 type Key = string | number
 
