@@ -4,6 +4,7 @@
 import {Socket} from "socket.io";
 import logger from "@chessAi/utils/logger";
 import cacheExternal from "@chessAi/utils/cache_external";
+import {createHandHistory} from "@chessAi/services/game"
 
 // gamesInSession stores an array of all active socket connections
 const gamesInSession: any = []
@@ -68,6 +69,8 @@ const playerJoinsGame = (idData:any) =>  {
     // Look up the room ID in the Socket.IO manager object.
     var room = io.sockets.adapter.rooms.get(idData.gameId)
 
+    console.log(room)
+    console.log(io.sockets);
     // If the room exists...
     if (room === undefined) {
         gameSocket.emit('status' , "This game session does not exist." );
@@ -83,6 +86,7 @@ const playerJoinsGame = (idData:any) =>  {
         console.log(room.size)
 
         if (room.size === 2) {
+            console.log("tow completed");
             io.sockets.in(idData.gameId).emit('start game', idData.userName)
         }
 
@@ -116,6 +120,7 @@ const newMove = (move: any) =>  {
      * Next, we actually send this message to everyone except the sender
      * in this room.
      */
+    createHandHistory(move);
     console.log(JSON.stringify(move));
     const gameId = move.gameId
 

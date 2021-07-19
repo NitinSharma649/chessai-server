@@ -41,7 +41,7 @@ class MongoConnection {
         await mongoose.connect(mongoUrl, opts)
       } else {
         logger.debug('connecting to mongo db: ' + config.mongo.url)
-        mongoose.connect(config.mongo.url, opts)
+        await mongoose.connect(config.mongo.url, opts)
       }
 
       mongoose.connection.on('connected', () => {
