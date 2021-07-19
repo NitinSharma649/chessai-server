@@ -1,19 +1,19 @@
 import {Schema, Document, model, Model} from 'mongoose'
 
 export interface IGameHistory extends Document {
-    nextPlayerColorToMove: boolean;
-    playerColorThatJustMovedIsWhite: boolean;
     gameId: string;
-    move: string;
-    fen: string;
+    userId: string;
+    color: string;
+    socketId: string;
+    username: string;
 }
 
 const GameHistorySchema = new Schema<IGameHistory>({
-    nextPlayerColorToMove: {type: Boolean, required: true},
-    playerColorThatJustMovedIsWhite: {type: Boolean, required: true},
     gameId: {type: String, required: true},
-    move: {type: Object, required: true},
-    fen: {type: String, required: true},
+    userId: {type: String, required: true},
+    color: {type: String, required: true},
+    socketId: {type: String, required: true},
+    username: {type: String, required: true}
 });
 
 export interface IGameHistoryModel extends Model<IGameHistory> {

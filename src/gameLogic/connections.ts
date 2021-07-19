@@ -4,7 +4,7 @@
 import {Socket} from "socket.io";
 import logger from "@chessAi/utils/logger";
 import cacheExternal from "@chessAi/utils/cache_external";
-import {createHandHistory} from "@chessAi/services/game"
+import {createGameHistory, createHandHistory} from "@chessAi/services/game"
 
 // gamesInSession stores an array of all active socket connections
 const gamesInSession: any = []
@@ -40,6 +40,8 @@ const initializeGame = (sio: any, socket: Socket) => {
     gameSocket.on('request username', requestUserName)
 
     gameSocket.on('recieved userName', recievedUserName)
+
+    gameSocket.on('gameHistory', StoreGameHistory)
 
     // register event listeners for video chat app:
     videoChatBackend()
@@ -140,6 +142,9 @@ const recievedUserName = (data: any) =>  {
     console.log(data)
     data.socketId = gameSocket.id
     io.to(data.gameId).emit('get Opponent UserName', data);
+}
+const StoreGameHistory = (data: any) =>  {
+    createGameHistory(data);
 }
 
 export default initializeGame
